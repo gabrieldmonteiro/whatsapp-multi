@@ -236,7 +236,12 @@ export class ViewManager {
     hardenWebContents(wc, { navigationAllowlist: WHATSAPP_HOSTS });
     this.attachShortcuts(wc);
 
-    wc.on('did-start-loading', () => this.setState(id, entry, 'loading'));
+    // Only full main-frame navigations count as loading. did-start-loading also fires for
+    // subframes and in-page loads (e.g. after QR login), which would hide the view forever
+    // because did-finish-load is main-frame only.
+    wc.on('did-start-navigation', (details) => {
+      if (details.isMainFrame && !details.isSameDocument) this.setState(id, entry, 'loading');
+    });
     wc.on('did-finish-load', () => {
       if (isHostAllowed(wc.getURL(), WHATSAPP_HOSTS)) this.setState(id, entry, 'ready');
     });

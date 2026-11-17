@@ -62,6 +62,16 @@ function createWindow(views: ViewManager): void {
 const accountSessions = new Set<Session>();
 
 app.on('web-contents-created', (_event, contents) => {
+  if (devUrl) {
+    // Dev-only diagnostics for account views.
+    const tag = `[wc ${contents.id}]`;
+    contents.on('console-message', (e) => console.log(tag, 'console', e.level, e.message));
+    contents.on('did-fail-load', (_e, code, desc, url) => console.log(tag, 'fail', code, desc, url));
+    contents.on('render-process-gone', (_e, d) => console.log(tag, 'gone', d.reason));
+    contents.on('will-navigate', (e) => console.log(tag, 'will-navigate', e.url));
+    contents.on('will-redirect', (e) => console.log(tag, 'will-redirect', e.url));
+    contents.on('did-navigate', (_e, url) => console.log(tag, 'did-navigate', url));
+  }
   if (contents.session === session.defaultSession) {
     hardenWebContents(contents);
   } else if (!accountSessions.has(contents.session)) {

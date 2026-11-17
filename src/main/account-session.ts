@@ -22,7 +22,10 @@ export function decidePermission(
   switch (permission) {
     case 'notifications':
       return account.notifications ? 'grant' : 'deny';
+    // persistent-storage: WhatsApp Web keeps its linked-device state in IndexedDB and
+    // refuses to finish loading without a persistent storage bucket.
     case 'clipboard-sanitized-write':
+    case 'persistent-storage':
       return 'grant';
     case 'media':
       return 'ask-media';
@@ -59,6 +62,7 @@ export function hardenAccountSession(
     const url = details.requestingUrl;
     const account = deps.getAccount(accountId);
     const decision = decidePermission(permission, url, account);
+    if (process.env['ELECTRON_RENDERER_URL']) console.log('[perm request]', permission, url, decision);
     if (decision === 'ask-media' && account) {
       const types =
         'mediaTypes' in details && Array.isArray(details.mediaTypes)
@@ -73,7 +77,9 @@ export function hardenAccountSession(
     callback(decision === 'grant');
   });
 
-  ses.setPermissionCheckHandler((_wc, permission, requestingOrigin) =>
-    checkPermission(permission, requestingOrigin, deps.getAccount(accountId)),
-  );
+  ses.setPermissionCheckHandler((_wc, permission, requestingOrigin) => {
+    const ok = checkPermission(permission, requestingOrigin, deps.getAccount(accountId));
+    if (process.env['ELECTRON_RENDERER_URL']) console.log('[perm check]', permission, requestingOrigin, ok);
+    return ok;
+  });
 }

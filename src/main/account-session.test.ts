@@ -33,6 +33,8 @@ describe('permission policy', () => {
   it('media asks, clipboard granted, rest denied', () => {
     expect(decidePermission('media', wa, on)).toBe('ask-media');
     expect(decidePermission('clipboard-sanitized-write', wa, off)).toBe('grant');
+    expect(decidePermission('persistent-storage', wa, off)).toBe('grant');
+    expect(decidePermission('persistent-storage', 'https://static.whatsapp.net/', off)).toBe('deny');
     expect(decidePermission('geolocation', wa, on)).toBe('deny');
   });
   it('check handler never pre-grants media', () => {

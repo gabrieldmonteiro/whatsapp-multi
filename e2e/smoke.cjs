@@ -2,12 +2,17 @@
 const { _electron } = require('playwright-core');
 const path = require('node:path');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
 
 (async () => {
   const root = path.resolve(__dirname, '..');
+  // Isolated userData so a running instance (single-instance lock) doesn't interfere.
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'wam-smoke-'));
+  process.on('exit', () => fs.rmSync(tmp, { recursive: true, force: true }));
   const app = await _electron.launch({
     executablePath: require('electron'),
-    args: [root],
+    args: [root, `--user-data-dir=${tmp}`],
     timeout: 30000,
   });
   const errors = [];
