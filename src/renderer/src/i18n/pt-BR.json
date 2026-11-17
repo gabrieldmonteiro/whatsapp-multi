@@ -1,7 +1,66 @@
 {
   "shell": {
     "title": "WhatsApp Multi",
-    "placeholder": "Casca do aplicativo (apenas a base, sem funcionalidades ainda)",
+    "placeholder": "Casca do aplicativo",
     "version": "Versão {{version}}"
+  },
+  "sidebar": {
+    "label": "Contas",
+    "add": "Adicionar conta",
+    "unofficial": "Aplicativo não oficial, sem vínculo com o WhatsApp.",
+    "unread": "{{count}} não lidas",
+    "moreActions": "Ações para {{name}}",
+    "shortcut": "Ctrl+{{n}}"
+  },
+  "state": {
+    "idle": "Não carregada",
+    "loading": "Carregando",
+    "ready": "Pronta",
+    "error": "Falha ao carregar",
+    "crashed": "Travou"
+  },
+  "menu": {
+    "rename": "Renomear",
+    "color": "Alterar cor",
+    "keepAlive": "Manter em segundo plano",
+    "notifications": "Notificações",
+    "moveUp": "Mover para cima",
+    "moveDown": "Mover para baixo",
+    "remove": "Remover conta"
+  },
+  "empty": {
+    "title": "Nenhuma conta ainda",
+    "body": "Adicione uma conta do WhatsApp para começar. Cada conta é isolada, então você pode usar várias ao mesmo tempo.",
+    "cta": "Adicionar primeira conta",
+    "select": "Selecione uma conta à esquerda."
+  },
+  "overlay": {
+    "loading": "Carregando o WhatsApp...",
+    "error": "Não foi possível carregar o WhatsApp. Verifique a conexão e tente novamente.",
+    "crashed": "A visualização desta conta travou.",
+    "idle": "Iniciando conta...",
+    "reload": "Recarregar"
+  },
+  "wizard": {
+    "title": "Adicionar conta",
+    "editTitle": "Editar conta",
+    "name": "Nome",
+    "namePlaceholder": "ex.: Pessoal, Trabalho",
+    "color": "Cor",
+    "stepsTitle": "Depois de continuar",
+    "step1": "O WhatsApp Web abrirá com o próprio QR code.",
+    "step2": "No celular, abra o WhatsApp, vá em Aparelhos conectados e toque em Conectar um aparelho.",
+    "step3": "Escaneie o QR code exibido pelo WhatsApp nesta janela.",
+    "create": "Criar conta",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "errorLimit": "Você atingiu o número máximo de contas.",
+    "errorGeneric": "Algo deu errado. Tente novamente."
+  },
+  "confirm": {
+    "removeTitle": "Remover conta?",
+    "removeBody": "\"{{name}}\" será removida e os dados de sessão salvos serão apagados deste computador. Será preciso escanear o QR code novamente para adicioná-la de volta.",
+    "remove": "Remover",
+    "cancel": "Cancelar"
   }
 }

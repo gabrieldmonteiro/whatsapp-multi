@@ -24,6 +24,14 @@ const assert = require('node:assert/strict');
     const locale = await page.evaluate(() => window.api.app.getLocale());
     assert.match(version, /^\d+\.\d+\.\d+/);
     assert.ok(typeof locale === 'string' && locale.length > 0);
+    const shape = await page.evaluate(() => ({
+      list: typeof window.api.accounts.list,
+      on: typeof window.api.on,
+      states: typeof window.api.view.getStates,
+    }));
+    assert.deepEqual([shape.list, shape.on, shape.states], ['function', 'function', 'function']);
+    assert.ok(Array.isArray(await page.evaluate(() => window.api.accounts.list())));
+    assert.ok(Array.isArray(await page.evaluate(() => window.api.view.getStates())));
     assert.equal(await page.evaluate(() => typeof require), 'undefined', 'node leaked');
     assert.ok(page.url().startsWith('app://renderer/'), `unexpected URL ${page.url()}`);
     assert.deepEqual(errors, []);

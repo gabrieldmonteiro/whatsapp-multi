@@ -52,7 +52,9 @@ export function handleAppProtocol(rootDir: string): void {
     try {
       const data = await readFile(file);
       const type = MIME[extname(file).toLowerCase()] ?? 'application/octet-stream';
-      return new Response(new Uint8Array(data), { headers: { 'content-type': type, 'x-content-type-options': 'nosniff' } });
+      return new Response(new Uint8Array(data), {
+        headers: { 'content-type': type, 'x-content-type-options': 'nosniff' },
+      });
     } catch {
       return new Response('Not found', { status: 404 });
     }

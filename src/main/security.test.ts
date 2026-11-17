@@ -26,3 +26,13 @@ describe('isSafeExternalUrl', () => {
     expect(isSafeExternalUrl('javascript:alert(1)')).toBe(false);
   });
 });
+
+describe('canOpenExternal', () => {
+  it('allows one call per second per key', async () => {
+    const { canOpenExternal } = await import('./security');
+    expect(canOpenExternal(901, 1000)).toBe(true);
+    expect(canOpenExternal(901, 1500)).toBe(false);
+    expect(canOpenExternal(902, 1500)).toBe(true);
+    expect(canOpenExternal(901, 2100)).toBe(true);
+  });
+});

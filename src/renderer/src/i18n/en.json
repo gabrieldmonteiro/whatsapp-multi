@@ -1,7 +1,66 @@
 {
   "shell": {
     "title": "WhatsApp Multi",
-    "placeholder": "Application shell (foundation only, no features yet)",
+    "placeholder": "Application shell",
     "version": "Version {{version}}"
+  },
+  "sidebar": {
+    "label": "Accounts",
+    "add": "Add account",
+    "unofficial": "Unofficial app, not affiliated with WhatsApp.",
+    "unread": "{{count}} unread",
+    "moreActions": "Actions for {{name}}",
+    "shortcut": "Ctrl+{{n}}"
+  },
+  "state": {
+    "idle": "Not loaded",
+    "loading": "Loading",
+    "ready": "Ready",
+    "error": "Failed to load",
+    "crashed": "Crashed"
+  },
+  "menu": {
+    "rename": "Rename",
+    "color": "Change color",
+    "keepAlive": "Keep running in background",
+    "notifications": "Notifications",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "remove": "Remove account"
+  },
+  "empty": {
+    "title": "No accounts yet",
+    "body": "Add a WhatsApp account to get started. Each account is isolated, so you can be signed in to several at once.",
+    "cta": "Add your first account",
+    "select": "Select an account on the left."
+  },
+  "overlay": {
+    "loading": "Loading WhatsApp...",
+    "error": "Could not load WhatsApp. Check your connection and try again.",
+    "crashed": "This account's view crashed.",
+    "idle": "Starting account...",
+    "reload": "Reload"
+  },
+  "wizard": {
+    "title": "Add account",
+    "editTitle": "Edit account",
+    "name": "Name",
+    "namePlaceholder": "e.g. Personal, Work",
+    "color": "Color",
+    "stepsTitle": "After you continue",
+    "step1": "WhatsApp Web will open with its own QR code.",
+    "step2": "On your phone open WhatsApp, then go to Linked devices and tap Link a device.",
+    "step3": "Scan the QR code shown by WhatsApp in this window.",
+    "create": "Create account",
+    "save": "Save",
+    "cancel": "Cancel",
+    "errorLimit": "You have reached the maximum number of accounts.",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "confirm": {
+    "removeTitle": "Remove account?",
+    "removeBody": "\"{{name}}\" will be removed and its saved session data deleted from this computer. You will need to scan a QR code again to re-add it.",
+    "remove": "Remove",
+    "cancel": "Cancel"
   }
 }
