@@ -1,0 +1,7 @@
+{
+  "shell": {
+    "title": "WhatsApp Multi",
+    "placeholder": "Casca do aplicativo (apenas a base, sem funcionalidades ainda)",
+    "version": "Versão {{version}}"
+  }
+}

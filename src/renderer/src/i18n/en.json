@@ -1,0 +1,7 @@
+{
+  "shell": {
+    "title": "WhatsApp Multi",
+    "placeholder": "Application shell (foundation only, no features yet)",
+    "version": "Version {{version}}"
+  }
+}

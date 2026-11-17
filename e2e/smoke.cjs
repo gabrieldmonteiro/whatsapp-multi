@@ -1,0 +1,37 @@
+// Launches the BUILT app (run `npm run build` first) and checks the preload bridge.
+const { _electron } = require('playwright-core');
+const path = require('node:path');
+const assert = require('node:assert/strict');
+
+(async () => {
+  const root = path.resolve(__dirname, '..');
+  const app = await _electron.launch({
+    executablePath: require('electron'),
+    args: [root],
+    timeout: 30000,
+  });
+  const errors = [];
+  app.process().stderr.on('data', (d) => {
+    const s = String(d);
+    if (/preload-error|Unable to load preload|Cannot find module/i.test(s)) errors.push(s.trim());
+  });
+  try {
+    const page = await app.firstWindow();
+    page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
+    await page.waitForLoadState('load');
+    assert.equal(await page.evaluate(() => typeof window.api), 'object', 'window.api missing');
+    const version = await page.evaluate(() => window.api.app.getVersion());
+    const locale = await page.evaluate(() => window.api.app.getLocale());
+    assert.match(version, /^\d+\.\d+\.\d+/);
+    assert.ok(typeof locale === 'string' && locale.length > 0);
+    assert.equal(await page.evaluate(() => typeof require), 'undefined', 'node leaked');
+    assert.ok(page.url().startsWith('app://renderer/'), `unexpected URL ${page.url()}`);
+    assert.deepEqual(errors, []);
+    console.log(`smoke ok: version=${version} locale=${locale} url=${page.url()}`);
+  } finally {
+    await app.close();
+  }
+})().catch((e) => {
+  console.error('smoke FAIL:', e.message);
+  process.exit(1);
+});
