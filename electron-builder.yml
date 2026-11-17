@@ -9,7 +9,9 @@ win:
   target:
     - nsis
     - zip
+  artifactName: WhatsApp-Multi-${version}-win-${arch}-portable.${ext}
 nsis:
+  artifactName: WhatsApp-Multi-Setup-${version}.${ext}
   oneClick: false
   allowToChangeInstallationDirectory: true
 asar: true
