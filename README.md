@@ -17,7 +17,7 @@ Use várias contas do WhatsApp em uma única janela no Windows. Cada conta roda 
 
 ### Download
 
-Baixe o instalador **WhatsApp Multi 0.1.0** em [Releases](../../releases/latest) (`WhatsApp-Multi-Setup-0.1.0.exe`) e execute.
+Baixe o instalador **WhatsApp Multi 1.0** em [Releases](../../releases/latest) (`WhatsApp-Multi-Setup-1.0.0.exe`) e execute.
 
 ---
 
@@ -29,7 +29,7 @@ Run multiple WhatsApp accounts in a single window on Windows. Each account runs 
 
 ### Download
 
-Get the **WhatsApp Multi 0.1.0** installer from [Releases](../../releases/latest) (`WhatsApp-Multi-Setup-0.1.0.exe`) and run it.
+Get the **WhatsApp Multi 1.0** installer from [Releases](../../releases/latest) (`WhatsApp-Multi-Setup-1.0.0.exe`) and run it.
 
 ---
 
